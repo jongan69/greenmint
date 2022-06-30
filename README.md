@@ -1,6 +1,8 @@
 # Green Mint
 
-A platform for minting NFT miner agreements between entities and high reputation miners for standardizing decentralized storage contracts
+A platform for minting NFT miner agreements between entities and high reputation miners for standardizing decentralized storage contracts:
+https://docs.google.com/presentation/d/1j5VXWsVUHwn3GYztiMKWz2BlOHkvSntJY-yGuObuLF8/edit?usp=sharing
+
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/timlrx/tailwind-nextjs-starter-blog)
 
