@@ -1,12 +1,12 @@
 ---
-title: Sample .md file
-date: '2016-03-08'
-tags: ['markdown', 'code', 'features']
+title: Sustainable Blockchain Hackathon
+date: '2022-06-30'
+tags: ['Blockchain', 'IPFS', 'Filecoin Green']
 draft: false
-summary: Example of a markdown file with code blocks and syntax highlighting
+summary: Blockchains are great for making transparent, verifiable claims and this means that there is a world of Web3 environmental tools to explore and create. Filecoin Green aims to turn sustainability into a Web3 superpower, and we need your help! If you are a builder interested in laying the foundation for tomorrow’s verifiably sustainable web, come join us for the Sustainable Blockchain Hackathon. All are welcome - whether you are deep into Refi or just want to learn how to make the environmental impacts of your projects more transparent.
 ---
 
-A sample post with markdown.
+A sample post about the Hackathon.
 
 ## Inline Highlighting
 

@@ -1,17 +1,18 @@
 const siteMetadata = {
-  title: 'Next.js Starter Blog',
-  author: 'Tails Azimuth',
-  headerTitle: 'TailwindBlog',
-  description: 'A blog created with Next.js and Tailwind.css',
+  title: 'Green Mint',
+  author: 'Jonathan Gan',
+  headerTitle: 'Green Mint',
+  description:
+    'A platform for minting NFT miner agreements between entities and high reputation miners for standardizing decentralized storage contracts',
   language: 'en-us',
-  theme: 'system', // system, dark or light
-  siteUrl: 'https://tailwind-nextjs-starter-blog.vercel.app',
-  siteRepo: 'https://github.com/timlrx/tailwind-nextjs-starter-blog',
+  theme: 'dark', // system, dark or light
+  siteUrl: 'https://greenmint.vercel.app',
+  siteRepo: 'https://github.com/jongan69/greenmint',
   siteLogo: '/static/images/logo.png',
   image: '/static/images/avatar.png',
   socialBanner: '/static/images/twitter-card.png',
-  email: 'address@yoursite.com',
-  github: 'https://github.com',
+  email: 'greenmintdev@gmail.com',
+  github: 'https://github.com/jongan69/greenmint',
   twitter: 'https://twitter.com/Twitter',
   facebook: 'https://facebook.com',
   youtube: 'https://youtube.com',
