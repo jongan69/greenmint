@@ -6,8 +6,13 @@ import SectionContainer from './SectionContainer'
 import Footer from './Footer'
 import MobileNav from './MobileNav'
 import ThemeSwitch from './ThemeSwitch'
+import { useAddress, useDisconnect, useMetamask } from '@thirdweb-dev/react'
 
 const LayoutWrapper = ({ children }) => {
+  const address = useAddress()
+  const connectWithMetamask = useMetamask()
+  const disconnectWallet = useDisconnect()
+
   return (
     <SectionContainer>
       <div className="flex h-screen flex-col justify-between">
@@ -27,6 +32,16 @@ const LayoutWrapper = ({ children }) => {
                 )}
               </div>
             </Link>
+          </div>
+          <div className="p-1 font-medium text-green-500 dark:text-green-500 sm:p-4">
+            {address ? (
+              <>
+                <button onClick={disconnectWallet}>Disconnect Wallet</button>
+                <p>Your address: {address}</p>
+              </>
+            ) : (
+              <button onClick={connectWithMetamask}>Connect with Metamask</button>
+            )}
           </div>
           <div className="flex items-center text-base leading-5">
             <div className="hidden sm:block">
