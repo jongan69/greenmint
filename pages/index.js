@@ -10,6 +10,7 @@ import { nodesApi } from 'lib/filecoinnodes.js'
 import { minersApi } from 'lib/filecoinminers.js'
 import { MinersTable } from '@/components/MinersTable'
 import { useEffect, useState } from 'react'
+import PdfToNftMint from '../components/PdfToNftMint'
 // import NewsletterForm from '@/components/NewsletterForm'
 const MAX_DISPLAY = 5
 
@@ -25,9 +26,23 @@ export default function Home({ posts, nodes, miners }) {
   const [greenMintScores, setGreenMintScores] = useState([])
   const [manystorageContract, setManyStorageContracts] = useState([])
   let [totalFreeSpace, setTotalFreeSpace] = useState([])
+  const current = new Date()
+  const date = `${current.getDate()}/${current.getMonth() + 1}/${current.getFullYear()}`
   const address = useAddress()
   const connectWithMetamask = useMetamask()
   const disconnectWallet = useDisconnect()
+  let NftData = {
+    title: `An NFT Agreement between ${address} and Filecoin Miner ID ${greenMintScores[0]}`,
+    address,
+    greenMintScores,
+    date,
+    description: '',
+    region: 'US/CANADA',
+    minerId: '',
+    storageGoal: '',
+    estCost: '',
+    image: '',
+  }
 
   useEffect(() => {
     if (miners.miners.length > 0) {
@@ -101,9 +116,9 @@ export default function Home({ posts, nodes, miners }) {
           </h1>
 
           <h3 className="text-m sm:text-m md:text-m font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:leading-10 md:leading-14">
-            Filecoin Green Stats
+            Filecoin Green Stats as of <p style={{ color: 'green' }}>{current.toString()}</p>
           </h3>
-          {nodes && address ? (
+          {nodes && address && miners ? (
             <>
               <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
                 Total Filecoin Retrieval Miners(Servers): {nodes?.total}
@@ -121,6 +136,7 @@ export default function Home({ posts, nodes, miners }) {
                 Providers With over 100 Gigabytes Free Space: {totalFreeSpace?.length}
               </p>
               {/* <MinersTable /> */}
+              <PdfToNftMint pdfData={NftData} />
             </>
           ) : (
             <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
