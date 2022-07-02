@@ -1,6 +1,6 @@
 const siteMetadata = {
   title: 'Green Mint',
-  author: 'Jonathan Gan',
+  author: 'IPFS Sustainable Blockchain Hackathon',
   headerTitle: 'Green Mint',
   description:
     'A platform for minting NFT miner agreements between entities and high reputation miners for standardizing decentralized storage contracts',
