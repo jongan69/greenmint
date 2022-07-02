@@ -30,7 +30,7 @@ export default function Home({ posts, nodes, miners }) {
   const disconnectWallet = useDisconnect()
 
   useEffect(() => {
-    if (miners) {
+    if (miners.miners.length > 0) {
       miners?.miners?.forEach((item, index) => {
         if (item?.score > 90) {
           // console.log('Found a score: ', item?.score, 'at ', index)
@@ -46,6 +46,7 @@ export default function Home({ posts, nodes, miners }) {
       })
 
       miners?.miners?.forEach((item, index) => {
+        // eslint-disable-next-line prettier/prettier
         if (item?.freeSpace / 100000000000 > 100) {
           // console.log(
           //   'Found a over 100 Gigabytes Free: ',
@@ -53,11 +54,11 @@ export default function Home({ posts, nodes, miners }) {
           //   'at ',
           //   index
           // )
-          totalFreeSpace.push(item)
+          totalFreeSpace.push(miners.miners[index])
         }
       })
     }
-  })
+  }, [greenMintScores, manystorageContract, miners, totalFreeSpace])
 
   return (
     <>
