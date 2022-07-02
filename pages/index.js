@@ -1,22 +1,24 @@
 import Link from '@/components/Link'
 import { PageSEO } from '@/components/SEO'
-import Tag from '@/components/Tag'
+// import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import { getAllFilesFrontMatter } from '@/lib/mdx'
-import formatDate from '@/lib/utils/formatDate'
+// import formatDate from '@/lib/utils/formatDate'
 import { useAddress, useDisconnect, useMetamask } from '@thirdweb-dev/react'
 import { truncate } from '@/lib/utils/truncate'
-import NewsletterForm from '@/components/NewsletterForm'
-
+import { nodesApi } from 'lib/filecoinnodes.js'
+import { MinersTable } from '@/components/MinersTable'
+// import NewsletterForm from '@/components/NewsletterForm'
 const MAX_DISPLAY = 5
 
 export async function getStaticProps() {
   const posts = await getAllFilesFrontMatter('blog')
-
-  return { props: { posts } }
+  const nodes = await nodesApi.get()
+  // console.log('NODES:', nodes)
+  return { props: { posts, nodes } }
 }
 
-export default function Home({ posts }) {
+export default function Home({ posts, nodes }) {
   const address = useAddress()
   const connectWithMetamask = useMetamask()
   const disconnectWallet = useDisconnect()
@@ -59,9 +61,21 @@ export default function Home({ posts }) {
           <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
             Welcome to Green Mint
           </h1>
-          <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
-            Now lets look at some mining data...
-          </p>
+          {nodes && address ? (
+            <>
+              <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
+                Filecoin Nodes Found: {nodes.total}
+              </p>
+              <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
+                All Miners and Score:
+              </p>
+              {/* <MinersTable /> */}
+            </>
+          ) : (
+            <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
+              Now lets look at some mining data...
+            </p>
+          )}
         </div>
       )}
       {address && (
