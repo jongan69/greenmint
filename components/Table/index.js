@@ -7,7 +7,7 @@ import { Pagination } from 'components/Pagination'
 import { SortButton } from './SortButton'
 import s from './s.module.css'
 
-const Table = ({
+export const Table = ({
   title,
   data = defaultDataState,
   columns = [],
@@ -79,5 +79,3 @@ const Table = ({
     </div>
   )
 }
-
-export default Table

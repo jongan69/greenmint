@@ -3,71 +3,81 @@ import { nanoid } from 'nanoid'
 import { NumberParam, StringParam, useQueryParams } from 'use-query-params'
 import cn from 'classnames'
 
-import { fetchMiners } from '../../lib/filrep'
+import { fetchMinerData } from '../../lib/filrep'
 import { defaultDataState } from '../../lib/utils/constant'
 
 import { Table } from '../Table'
-import { formatBytes } from './bytes'
+// import { formatBytes } from '../../lib/utils/bytes'
 
 import s from './s.module.css'
 
-const MinersTable = () => {
+export const MinersTable = () => {
   const [data, setData] = useState(defaultDataState)
   const [total, setTotal] = useState(0)
-  const [query, setQuery] = useQueryParams({
-    miner: StringParam,
-    limit: NumberParam,
-    offset: NumberParam,
-    start: StringParam,
-    end: StringParam,
-    sortBy: StringParam,
-    order: StringParam,
-  })
+  const [limit, setLimit] = useState(0)
+  const [offset, setOffset] = useState(0)
+
+  // const [query, setQuery] = useQueryParams({
+  //   miner: StringParam,
+  //   limit: NumberParam,
+  //   offset: NumberParam,
+  //   start: StringParam,
+  //   end: StringParam,
+  //   sortBy: StringParam,
+  //   order: StringParam,
+  // })
 
   useEffect(() => {
     const abortController = new AbortController()
 
-    setData((prevProps) => ({ ...prevProps, loading: true }))
+    // setData((prevProps) => ({ ...prevProps, loading: true }))
+    setData(fetchMinerData())
+    console.log('Data is: ', data)
+    // fetchMiners(abortController, {
+    //   limit: query?.limit ?? 10,
+    //   offset: query.offset ?? 0,
+    //   sortBy: query.sortBy ?? undefined,
+    //   order: query.order ?? undefined,
+    // })
+    //   .then((result) => {
+    //     setData({
+    //       results: result.miners,
+    //       loading: false,
+    //       failed: false,
+    //     })
 
-    fetchMiners(abortController, {
-      limit: query.limit ?? 10,
-      offset: query.offset ?? 0,
-      sortBy: query.sortBy ?? undefined,
-      order: query.order ?? undefined,
-    })
-      .then((result) => {
-        setData({
-          results: result.miners,
-          loading: false,
-          failed: false,
-        })
-
-        setTotal(result.pagination.total)
-      })
-      .catch((e) => {
-        console.error(e)
-        setData({
-          results: [],
-          loading: false,
-          failed: true,
-        })
-      })
-  }, [query.limit, query.offset, query.sortBy, query.order])
+    //     setTotal(result.pagination.total)
+    //   })
+    //   .catch((e) => {
+    //     console.error(e)
+    //     setData({
+    //       results: [],
+    //       loading: false,
+    //       failed: true,
+    //     })
+    //   })
+  }, [data])
 
   return (
-    <Table
+    <>
+      <p> Filecoin Nodes </p>
+      {data && (
+        <>
+          <p> You got data: </p>
+          <ul>
+            {data?.map((item, index) => (
+              <li key={index}>{item}</li>
+            ))}
+          </ul>
+        </>
+      )}
+      {/* <Table
       title="Storage Providers"
       className={s.table}
       data={data}
-      limit={query.limit ?? 10}
-      offset={query.offset ?? 0}
+      limit={limit ?? 10}
+      offset={offset ?? 0}
       total={total}
-      pageHandler={(page) => {
-        setQuery((prevQuery) => ({
-          ...prevQuery,
-          offset: (page - 1) * (query.limit ?? 10),
-        }))
-      }}
       columns={[
         {
           title: 'Entitiy',
@@ -80,49 +90,24 @@ const MinersTable = () => {
           key: 'power',
           sortKey: 'power',
           align: 'right',
-          format: (value) =>
-            value
-              ? formatBytes(value, {
-                  precision: 2,
-                  inputUnit: 'GiB',
-                })
-              : 'N/A',
         },
         {
           title: 'Committed capacity',
           key: 'used',
           sortKey: 'used',
           align: 'right',
-          format: (value) =>
-            value
-              ? formatBytes(value, {
-                  precision: 2,
-                  inputUnit: 'GiB',
-                })
-              : 'N/A',
         },
         {
           title: '',
           key: nanoid(),
-          format: (_, item) => (
-            <button
-              type="button"
-              onClick={() => {
-                setQuery((prevQuery) => ({
-                  ...prevQuery,
-                  miner: item.miner,
-                }))
-                window.scroll({ top: 0 })
-              }}
-              className={cn('button-primary', s.statisticsButton)}
-            >
+          format: (_) => (
+            <button type="button" className={cn('button-primary', s.statisticsButton)}>
               View statistics
             </button>
           ),
         },
       ]}
-    />
+    /> */}
+    </>
   )
 }
-
-export default MinersTable
