@@ -1,7 +1,6 @@
 import styles from './styles/Home.module.css'
 import { useAddress, useDisconnect, useMagic } from '@thirdweb-dev/react'
-import { useState } from 'react'
-import React from 'react'
+import React, { useState } from 'react'
 
 const Magiclogin = () => {
   const address = useAddress() // Hook to grab the currently connected user's address.
