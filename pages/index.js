@@ -10,16 +10,22 @@ import { nodesApi } from 'lib/filecoinnodes.js'
 import { minersApi } from 'lib/filecoinminers.js'
 import { MinersTable } from '@/components/MinersTable'
 import { useEffect, useState } from 'react'
-import PdfToNftMint from '../components/PdfToNftMint'
+// import PdfToNftMint from '../components/PdfToNftMint'
 // import NewsletterForm from '@/components/NewsletterForm'
 const MAX_DISPLAY = 5
 
-export async function getStaticProps() {
+// export async function getStaticProps() {
+//   // console.log('NODES:', nodes)
+//   return { props: { posts } }
+// }
+
+export async function getServerSideProps() {
   const posts = await getAllFilesFrontMatter('blog')
   const nodes = await nodesApi.get()
   const miners = await minersApi.get()
-  // console.log('NODES:', nodes)
-  return { props: { posts, nodes, miners } }
+  return {
+    props: { posts, nodes, miners }, // will be passed to the page component as props
+  }
 }
 
 export default function Home({ posts, nodes, miners }) {
@@ -136,7 +142,7 @@ export default function Home({ posts, nodes, miners }) {
                 Providers With over 100 Gigabytes Free Space: {totalFreeSpace?.length}
               </p>
               {/* <MinersTable /> */}
-              <PdfToNftMint pdfData={NftData} />
+              {/* <PdfToNftMint pdfData={NftData} /> */}
             </>
           ) : (
             <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">

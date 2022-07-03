@@ -1,0 +1,21 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../filecoin-green-webapp"
+		},
+		{
+			"path": "../boost"
+		}
+	],
+	"settings": {
+		"cSpell.words": [
+			"filesize",
+			"fontsource",
+			"Magiclogin",
+			"wicg"
+		]
+	}
+}
