@@ -1,6 +1,10 @@
 # Green Mint
 
+<a href="https://www.buymeacoffee.com/jonngan" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+
 ![Green Mint](public/static/images/logo.png)
+
+
 
 A platform for minting NFT miner agreements between entities and high reputation miners for standardizing decentralized storage contracts:
 
